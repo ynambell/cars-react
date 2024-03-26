@@ -1,15 +1,18 @@
-import {catalogItem} from '../catalogItem/catalogItem.js';
+import React from 'react';
+import {CatalogItem} from '../CatalogItem/CatalogItem';
+import './CatalogItemsGallery.css';
 
-export function catalogItemsGallery({
+export function CatalogItemsGallery({
     items = [],
 }) {
-    return `
-        <div class="catalogItemsGallery">
-            ${formatItems(items)}
+    return (
+        <div className="CatalogItemsGallery">
+            {items.map((itemData, i) => (
+                <CatalogItem
+                    key={i}
+                    {...itemData}
+                />
+            ))}
         </div>
-    `;
-}
-
-export function formatItems(items) {
-    return items.map(catalogItem).join('\n');
+    );
 }

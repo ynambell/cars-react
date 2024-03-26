@@ -1,79 +1,84 @@
-import {addHandler} from '../../handlers.js';
-import {button} from '../button/button.js';
-import {icon} from '../icon/icon.js';
+import React, {useState} from 'react';
+import {Icon} from '../Icon/Icon';
+import {Button} from '../Button/Button';
+import './CatalogItem.css';
 
-const favoriteIconElemClass = 'catalogItem__favoriteIcon';
-
-export function catalogItem({
+export function CatalogItem({
     title,
     category,
-    isFavorite,
     image,
     volume,
+    isFavorite: defaultIsFavorite,
     gear,
     capacity,
     price,
     oldPrice,
 }) {
+    const [isFavorite, setIsFavorite] = useState(defaultIsFavorite);
+
     const favoriteIconName = isFavorite ? 'heart' : 'heartOutline';
+    const favoriteIconElemClass = 'CatalogItem__favoriteIcon';
 
-    addHandler('.catalogItemsGallery', toggleFavorite);
-
-    function details(iconName, data) {
-        return `
-            <div class="catalogItem__detailsItem">
-                ${icon({
-                    name: iconName,
-                    auxClass: 'catalogItem__detailsItemIcon',
-                })}
-                <div class="catalogItem__detailsItemCaption">${data}</div>
+    function Details({iconName, text}) {
+        return (
+            <div className="CatalogItem__detailsItem">
+                <Icon
+                    name={iconName}
+                    auxClass='CatalogItem__detailsItemIcon'
+                />
+                <></>
+                <div className="CatalogItem__detailsItemCaption">{text}</div>
             </div>
-        `;
+        );
     }
 
-    return `
-        <div class="catalogItem">
-            <div class="catalogItem__titleBlock">
-                <div class="catalogItem__title">${title}</div>
-                <div class="catalogItem__category">${category}</div>
+    return (
+        <div className="CatalogItem">
+            <div className="CatalogItem__titleBlock">
+                <div className="CatalogItem__title">{title}</div>
+                <div className="CatalogItem__category">{category}</div>
             </div>
-            <div class="catalogItem__favorite">
-                ${icon({
-                    name: favoriteIconName,
-                    auxClass: favoriteIconElemClass,
-                })}
+            <div
+                className="CatalogItem__favorite"
+                onClick={() => {
+                    setIsFavorite(!isFavorite);
+                }}
+            >
+                <Icon
+                    name={favoriteIconName}
+                    auxClass={favoriteIconElemClass}
+                />
             </div>
-            <div class="catalogItem__imageBlock">
-                <img class="catalogItem__image" src="https://ik.imagekit.io/thybzi/${image}">
+            <div className="CatalogItem__imageBlock">
+                <img className="CatalogItem__image" src={`https://ik.imagekit.io/thybzi/${image}`}/>
             </div>
-            <div class="catalogItem__details">
-                ${details('icon_fuel', `${volume}L`)}
-                ${details('icon_steer', gear)}
-                ${details('icon_people', `${capacity} People`)}
+            <div className="CatalogItem__details">
+                <Details
+                    iconName='fuel'
+                    text={`${volume}L`}
+                />
+                <Details
+                    iconName='steer'
+                    text={gear}
+                />
+                <Details
+                    iconName='people'
+                    text={`${capacity} People`}
+                />
+
             </div>
-            <div class="catalogItem__rentBlock">
-                <div class="catalogItem__priceBlock">
-                    <div class="catalogItem__priceRow">
-                        <span class="catalogItem__price">$${price}.00/</span>
-                        <span class="catalogItem__subject">day</span>
+            <div className="CatalogItem__rentBlock">
+                <div className="CatalogItem__priceBlock">
+                    <div className="CatalogItem__priceRow">
+                        <span className="CatalogItem__price">${price}.00/</span>
+                        <span className="CatalogItem__subject">day</span>
                     </div>
-                    ${oldPrice ? `<div class="catalogItem__oldPrice">$${oldPrice}.00</div>` : ''}
+                    {oldPrice && <div className="CatalogItem__oldPrice">${oldPrice}.00</div>}
                 </div>
-                ${button({
-                    text: 'Rent Now',
-                    auxClass: 'catalogItem__rentButton',
-                })}
+                <Button
+                    text='Rent Now'
+                    auxClass='CatalogItem__rentButton'
+                />
             </div>
-        </div>
-    `;
-}
-
-function toggleFavorite(event) {
-    if (!event.target.classList.contains(favoriteIconElemClass)) {
-        return;
-    }
-
-    const heartElem = event.target;
-    heartElem.classList.toggle('icon_heart');
-    heartElem.classList.toggle('icon_heartOutline');
+        </div>);
 }
