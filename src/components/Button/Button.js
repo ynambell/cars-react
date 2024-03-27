@@ -1,4 +1,4 @@
-import './Button.css';
+import './Button.scss';
 import clsx from 'clsx';
 
 export function Button({
