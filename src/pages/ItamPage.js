@@ -1,5 +1,6 @@
 import {useLoaderData} from 'react-router-dom';
 import {MainContent} from '../components/MainContent/MainContent';
+import {Menu} from '../components/Menu/Menu';
 
 
 export function ItamPage() {
@@ -9,10 +10,13 @@ export function ItamPage() {
         description,
     } = useLoaderData();
     return (
-        <MainContent>
-            <img src={image} alt={`${title} photo`}/>
-            <h1>{title}</h1>
-            <div>{description}</div>
-        </MainContent>
+        <>
+            <Menu/>
+            <MainContent>
+                <img src={image} alt={`${title} photo`}/>
+                <h1>{title}</h1>
+                <div>{description}</div>
+            </MainContent>
+        </>
     );
 }
