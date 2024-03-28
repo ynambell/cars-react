@@ -1,11 +1,11 @@
-import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import {RouterProvider, createHashRouter} from 'react-router-dom';
 import {CatalogPage} from '../CatalogPage/CatalogPage';
 import './App.scss';
 import {HomePage} from '../HomePage/HomePage';
 
 export function App() {
     const apiUrl = 'https://660247539d7276a75552f2f5.mockapi.io/cars/list';
-    const router = createBrowserRouter([
+    const router = createHashRouter([
         {
             path: '/',
             element: <HomePage/>,
