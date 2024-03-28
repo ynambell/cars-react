@@ -1,6 +1,6 @@
 import {RouterProvider, createHashRouter} from 'react-router-dom';
-import {CatalogPage} from '../pages/CatalogPage/CatalogPage';
-import {HomePage} from '../pages/HomePage/HomePage';
+import {CatalogPage} from '../pages/CatalogPage';
+import {HomePage} from '../pages/HomePage';
 import {processItemData} from '../helpers/processItemData';
 
 export function App() {

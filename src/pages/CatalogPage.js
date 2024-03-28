@@ -1,6 +1,6 @@
 import {useLoaderData} from 'react-router-dom';
-import {CatalogContent} from '../../components/CatalogContent/CatalogContent';
-import {MainContent} from '../../components/MainContent/MainContent';
+import {CatalogContent} from '../components/CatalogContent/CatalogContent';
+import {MainContent} from '../components/MainContent/MainContent';
 
 
 export function CatalogPage() {
