@@ -50,7 +50,7 @@ export function CatalogItem({
                 />
             </div>
             <div className="CatalogItem__imageBlock">
-                <img className="CatalogItem__image" src={`https://ik.imagekit.io/thybzi/${image}`}/>
+                <img className="CatalogItem__image" src={image}/>
             </div>
             <div className="CatalogItem__details">
                 <Details
@@ -70,7 +70,7 @@ export function CatalogItem({
             <div className="CatalogItem__rentBlock">
                 <div className="CatalogItem__priceBlock">
                     <div className="CatalogItem__priceRow">
-                        <span className="CatalogItem__price">${price}.00/</span>
+                        <span className="CatalogItem__price">${price}/</span>
                         <span className="CatalogItem__subject">day</span>
                     </div>
                     {oldPrice && <div className="CatalogItem__oldPrice">${oldPrice}.00</div>}
