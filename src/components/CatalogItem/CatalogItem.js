@@ -2,8 +2,10 @@ import {useState} from 'react';
 import {Icon} from '../Icon/Icon';
 import {Button} from '../Button/Button';
 import './CatalogItem.scss';
+import {useNavigate} from 'react-router-dom';
 
 export function CatalogItem({
+    id,
     title,
     category,
     image,
@@ -15,6 +17,7 @@ export function CatalogItem({
     oldPrice,
 }) {
     const [isFavorite, setIsFavorite] = useState(defaultIsFavorite);
+    const navigate= useNavigate();
 
     const favoriteIconName = isFavorite ? 'heart' : 'heartOutline';
     const favoriteIconElemClass = 'CatalogItem__favoriteIcon';
@@ -78,6 +81,9 @@ export function CatalogItem({
                 <Button
                     text='Rent Now'
                     auxClass='CatalogItem__rentButton'
+                    onClick={() => {
+                        navigate(`/catalog/${id}`);
+                    }}
                 />
             </div>
         </div>);
