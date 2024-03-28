@@ -1,4 +1,3 @@
-import './CatalogContent.scss';
 import {useState} from 'react';
 import {CatalogItemsGallery} from '../CatalogItemsGallery/CatalogItemsGallery';
 import {CatalogMore} from '../CatalogMore/CatalogMore';
@@ -19,7 +18,7 @@ export function CatalogContent({
     }
 
     return (
-        <div className="CatalogContent">
+        <>
             <CatalogItemsGallery
                 items={galleryItems.slice(0, shownItemsCount)}
             />
@@ -27,6 +26,6 @@ export function CatalogContent({
                 buttonOnclick={showMoreItems}
                 galleryItemsCount={galleryItems.length}
             />)}
-        </div>
+        </>
     );
 }
