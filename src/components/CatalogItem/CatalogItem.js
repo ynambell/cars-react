@@ -17,7 +17,7 @@ export function CatalogItem({
     oldPrice,
 }) {
     const isFavorite = useSelector((state) => (state.favorites.includes(id)));
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const favoriteIconName = isFavorite ? 'heart' : 'heartOutline';
