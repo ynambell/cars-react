@@ -1,8 +1,10 @@
 import {RouterProvider, createHashRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import {CatalogPage} from '../pages/CatalogPage';
 import {HomePage} from '../pages/HomePage';
 import {processItemData} from '../helpers/processItemData';
 import {ItamPage} from '../pages/ItamPage';
+import {store} from '../store/store';
 
 export function App() {
     const apiUrl = 'https://660247539d7276a75552f2f5.mockapi.io/cars/list';
@@ -32,6 +34,8 @@ export function App() {
     ]);
 
     return (
-        <RouterProvider router={router}/>
+        <Provider store={store}>
+            <RouterProvider router={router}/>
+        </Provider>
     );
 }

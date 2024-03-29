@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {toggleItemFavorite} from '../../store/actions';
 import {Icon} from '../Icon/Icon';
 import {Button} from '../Button/Button';
 import './CatalogItem.scss';
-import {useNavigate} from 'react-router-dom';
 
 export function CatalogItem({
     id,
@@ -10,14 +11,14 @@ export function CatalogItem({
     category,
     image,
     volume,
-    isFavorite: defaultIsFavorite,
     gear,
     capacity,
     price,
     oldPrice,
 }) {
-    const [isFavorite, setIsFavorite] = useState(defaultIsFavorite);
-    const navigate= useNavigate();
+    const isFavorite = useSelector((state) => (state.favorites.includes(id)));
+    const dispatch = useDispatch;
+    const navigate = useNavigate();
 
     const favoriteIconName = isFavorite ? 'heart' : 'heartOutline';
     const favoriteIconElemClass = 'CatalogItem__favoriteIcon';
@@ -44,7 +45,7 @@ export function CatalogItem({
             <div
                 className="CatalogItem__favorite"
                 onClick={() => {
-                    setIsFavorite(!isFavorite);
+                    dispatch(toggleItemFavorite(id));
                 }}
             >
                 <Icon
