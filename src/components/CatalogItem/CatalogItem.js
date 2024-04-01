@@ -45,7 +45,7 @@ export function CatalogItem({
             <div
                 className="CatalogItem__favorite"
                 onClick={() => {
-                    dispatch(toggleItemFavorite(id));
+                    dispatch(toggleItemFavorite({id}));
                 }}
             >
                 <Icon
