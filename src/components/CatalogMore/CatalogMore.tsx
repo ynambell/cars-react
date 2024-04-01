@@ -1,10 +1,15 @@
 import {Button} from '../Button/Button';
 import './CatalogMore.scss';
 
+interface CatalogMoreProps {
+    buttonOnclick: () => void
+    galleryItemsCount: number
+}
+
 export function CatalogMore({
     buttonOnclick,
     galleryItemsCount,
-}) {
+}: CatalogMoreProps) {
     return (
         <div className="CatalogMore">
             <Button

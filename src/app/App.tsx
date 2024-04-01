@@ -4,7 +4,7 @@ import {CatalogPage} from '../pages/CatalogPage';
 import {HomePage} from '../pages/HomePage';
 import {processItemData} from '../helpers/processItemData';
 import {ItamPage} from '../pages/ItamPage';
-import {store} from '../store/store';
+import {RootState, store} from '../store/store';
 
 export function App() {
     const apiUrl = 'https://660247539d7276a75552f2f5.mockapi.io/cars/list';
@@ -35,7 +35,7 @@ export function App() {
             path: '/favorites',
             element: <CatalogPage/>,
             loader: async () => {
-                const {favorites} = store.getState();
+                const {favorites} = store.getState() as RootState;
                 const res = await fetch(apiUrl);
                 const data = await res.json();
                 return data.filter(({id}) => (favorites.includes(id))).map(processItemData);

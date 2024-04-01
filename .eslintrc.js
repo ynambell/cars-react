@@ -20,12 +20,21 @@ module.exports = {
                 sourceType: 'script',
             },
         },
+        {
+            files: ['*.ts', '*.tsx'],
+            extends: [
+                'plugin:@typescript-eslint/eslint-recommended',
+                'plugin:@typescript-eslint/recommended',
+            ],
+            parser: '@typescript-eslint/parser',
+            plugins: ['@typescript-eslint'],
+        },
     ],
     parserOptions: {
         ecmaVersion: 'latest',
     },
     settings: {
-        react: {
+        'react': {
             createClass: 'createReactClass', // Regex for Component Factory to use,
             // default to "createReactClass"
             pragma: 'React', // Pragma to use, default to "React"
@@ -34,6 +43,11 @@ module.exports = {
             // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
             // It will default to "latest" and warn if missing, and to "detect" in the future
             flowVersion: '0.53', // Flow version
+        },
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            },
         },
     },
     rules: {
@@ -48,5 +62,8 @@ module.exports = {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
         'react/prop-types': 'off',
+        'import/extensions': ['error', 'ignorePackages', {
+            js: 'never', jsx: 'never', ts: 'never', tsx: 'never',
+        }],
     },
 };
