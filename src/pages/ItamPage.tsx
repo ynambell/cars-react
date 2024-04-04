@@ -1,7 +1,8 @@
 import {useLoaderData} from 'react-router-dom';
-import {useSelector} from 'react-redux';
 import {MainContent} from '../components/MainContent/MainContent';
 import {Menu} from '../components/Menu/Menu';
+import type {CarItemData} from '../api/types';
+import {useAppSelector} from '../store/hooks';
 
 
 export function ItamPage() {
@@ -10,9 +11,9 @@ export function ItamPage() {
         image,
         title,
         description,
-    } = useLoaderData();
+    } = useLoaderData() as CarItemData;
 
-    const isFavorite = useSelector((state) => (state.favorites.includes(id)));
+    const isFavorite = useAppSelector((state) => (state.favorites.includes(id)));
 
     return (
         <>

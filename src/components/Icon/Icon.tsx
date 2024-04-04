@@ -10,9 +10,13 @@ export function Icon({
     name,
     auxClass = '',
 }: IconProps) {
-    return (<div className={clsx([
-        classes.Icon,
-        classes[`Icon_${name}`],
-        auxClass,
-    ])}/>);
+    return (
+        <div
+            className={clsx([
+                classes.Icon,
+                classes[`Icon_${name}`],
+                auxClass,
+            ])}
+        />
+    );
 }

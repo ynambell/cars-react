@@ -4,18 +4,9 @@ import {Icon} from '../Icon/Icon';
 import {Button} from '../Button/Button';
 import './CatalogItem.scss';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import type {CarItemData} from '../../api/types';
 
-export interface CatalogItemProps {
-    id: string
-    title: string
-    category: string
-    image: string
-    volume: number
-    gear: string
-    capacity: number
-    price: string
-    oldPrice: string
-}
+export interface CatalogItemProps extends CarItemData {}
 
 export function CatalogItem({
     id,

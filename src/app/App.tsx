@@ -2,12 +2,13 @@ import {RouterProvider, createHashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {CatalogPage} from '../pages/CatalogPage';
 import {HomePage} from '../pages/HomePage';
-import {processItemData} from '../helpers/processItemData';
 import {ItamPage} from '../pages/ItamPage';
-import {RootState, store} from '../store/store';
+import type {RootState} from '../store/store';
+import {store} from '../store/store';
+import {loadCarsList} from '../api/loadCarsList';
+import {loadCarItem} from '../api/loadCarsItem';
 
 export function App() {
-    const apiUrl = 'https://660247539d7276a75552f2f5.mockapi.io/cars/list';
     const router = createHashRouter([
         {
             path: '/',
@@ -16,19 +17,14 @@ export function App() {
         {
             path: '/catalog',
             element: <CatalogPage/>,
-            loader: async () => {
-                const res = await fetch(apiUrl);
-                const data = await res.json();
-                return data.map(processItemData);
-            },
+            loader: loadCarsList,
         },
         {
             path: '/catalog/:itemId',
             element: <ItamPage/>,
             loader: async ({params}) => {
-                const res = await fetch(`${apiUrl}/${params.itemId}`);
-                const data = await res.json();
-                return processItemData(data);
+                const data = await loadCarItem(params.itemId as string);
+                return data;
             },
         },
         {
@@ -36,9 +32,8 @@ export function App() {
             element: <CatalogPage/>,
             loader: async () => {
                 const {favorites} = store.getState() as RootState;
-                const res = await fetch(apiUrl);
-                const data = await res.json();
-                return data.filter(({id}) => (favorites.includes(id))).map(processItemData);
+                const data = await loadCarsList();
+                return data.filter(({id}) => (favorites.includes(id)));
             },
         },
     ]);
