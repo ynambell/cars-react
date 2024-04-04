@@ -3,7 +3,7 @@ import type {CarItemData} from '../api/types';
 import {useAppSelector} from '../store/hooks';
 
 
-export function ItamPage() {
+export function ItemPage() {
     const {
         id,
         image,
