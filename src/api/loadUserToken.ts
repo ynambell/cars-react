@@ -1,7 +1,7 @@
 import type {UserDataWithToken} from './types';
 import {userLoginApiUrl} from './values';
 
-export async function loginUserToken(username: string, password: string) {
+export async function loadUserToken(username: string, password: string) {
     const res = await fetch(userLoginApiUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

@@ -1,5 +1,5 @@
 import type {ActionFunction} from 'react-router-dom';
-import {loginUser} from '../api/loginUserToken';
+import {loadUserToken} from '../api/loadUserToken';
 import {removeUserToken, storeUserToken} from '../storage/session';
 
 export const loginAction: ActionFunction = async ({request}) => {
@@ -8,7 +8,7 @@ export const loginAction: ActionFunction = async ({request}) => {
     const password = formData.get('password') as string;
 
     try {
-        const token = await loginUser(username, password);
+        const token = await loadUserToken(username, password);
         storeUserToken(token);
     } catch (ex) {
         removeUserToken();
