@@ -1,7 +1,7 @@
 import {Outlet, useNavigation} from 'react-router-dom';
 import {MainContent} from '../components/MainContent/MainContent';
-import {Menu} from '../components/Menu/Menu';
 import {Loading} from '../components/Loading/Loading';
+import {Header} from '../components/Header/Header';
 
 export function Layout() {
     const navigation = useNavigation();
@@ -9,7 +9,7 @@ export function Layout() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <MainContent>
                 {isLoading ? <Loading/> : <Outlet/>}
             </MainContent>
