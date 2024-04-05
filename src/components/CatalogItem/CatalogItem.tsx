@@ -1,5 +1,5 @@
 import {useNavigate} from 'react-router-dom';
-import {toggleItemFavorite} from '../../store/actions';
+import {toggleItemFavorite} from '../../store/slices/favorites';
 import {Icon} from '../Icon/Icon';
 import {Button} from '../Button/Button';
 import './CatalogItem.scss';
