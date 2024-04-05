@@ -7,6 +7,7 @@ import {store} from '../store/store';
 import {loadCarsList} from '../api/loadCarsList';
 import {loadCarItem} from '../api/loadCarsItem';
 import {Layout} from './Layout';
+import {ErrorBoundary} from '../components/ErrorBoundary/ErrorBoundary';
 
 export function App() {
     const router = createHashRouter([
@@ -22,6 +23,7 @@ export function App() {
                     path: '/catalog',
                     element: <CatalogPage/>,
                     loader: loadCarsList,
+                    errorElement: <ErrorBoundary/>,
                 },
                 {
                     path: '/catalog/:itemId',
@@ -30,6 +32,7 @@ export function App() {
                         const data = await loadCarItem(params.itemId as string);
                         return data;
                     },
+                    errorElement: <ErrorBoundary/>,
                 },
                 {
                     path: '/favorites',
@@ -39,6 +42,7 @@ export function App() {
                         const data = await loadCarsList();
                         return data.filter(({id}) => (favorites.includes(id)));
                     },
+                    errorElement: <ErrorBoundary/>,
                 },
             ],
         },
