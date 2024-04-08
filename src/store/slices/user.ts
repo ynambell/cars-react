@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import type {UserData} from '../../api/types';
-import {getCurrentUser} from '../../api/loadUserData';
+import {loadUserData} from '../../api/loadUserData';
 import {readUserToken, removeUserToken} from '../../storage/session';
 
 type UserState = {
@@ -19,7 +19,7 @@ export const fetchUser = createAsyncThunk(
         }
 
         try {
-            return getCurrentUser(token);
+            return loadUserData(token);
         } catch (ex) {
             removeUserToken();
             rejectWithValue(ex);

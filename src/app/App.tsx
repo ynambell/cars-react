@@ -10,6 +10,7 @@ import {loadCarItem} from '../api/loadCarsItem';
 import {loginAction} from './loginAction';
 import {Layout} from './Layout';
 import {ErrorBoundary} from '../components/ErrorBoundary/ErrorBoundary';
+import {LoginFormContext} from '../components/LoginForm/LoginFormContext';
 
 export function App() {
     const router = createHashRouter([
@@ -20,6 +21,10 @@ export function App() {
                 void store.dispatch(fetchUser());
                 return null;
             },
+            errorElement: (
+                <LoginFormContext.Provider value={{hasError: true}}>
+                    <Layout/>,
+                </LoginFormContext.Provider>),
             children: [
                 {
                     path: '/',

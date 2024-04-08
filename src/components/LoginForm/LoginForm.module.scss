@@ -1,5 +1,5 @@
 @import '../../shared/colors.scss';
-@import '../../shared/madia.scss';
+@import '../../shared/media.scss';
 
 .LoginForm {
     display: flex;
@@ -24,5 +24,10 @@
             padding-left: 10px;
             padding-right: 10px;
         }
+
+        &_error {
+            border-color: $c_red;
+        }
+
     }
 }
