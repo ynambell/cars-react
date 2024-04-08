@@ -73,5 +73,6 @@ module.exports = {
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never', jsx: 'never', ts: 'never', tsx: 'never',
         }],
+        'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/*.test.*']}],
     },
 };
